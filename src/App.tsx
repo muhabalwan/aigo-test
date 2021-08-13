@@ -12,6 +12,7 @@ import VectorSource from 'ol/source/Vector';
 import UploadFile from './components/Upload';
 import Geometry from 'ol/geom/Geometry';
 import { IGeoJsonMap } from './helpers/types';
+import { StyledRow, StyledWrapper, StyledInput, StyledLabel } from './StyledApp.css';
 
 const styles = [
   new Style({
@@ -46,7 +47,7 @@ const App = () => {
     [category: string]: boolean
   }
   const [center, setCenter] = useState([97558, 229873]);
-  const [zoom, setZoom] = useState(13);
+  const [zoom, setZoom] = useState(12);
   const [sources, setSources] = useState<ISources>();
   const [showLayers, setShowLayers] = useState<IShowLayers>({});
 
@@ -73,50 +74,55 @@ const App = () => {
   }
 
   return (
-    <div>
+    <StyledWrapper>
       <UploadFile getUploadedFileData={getUploadedFileData} />
-      {sources &&
-        <Map center={center} zoom={zoom} >
-          <Layers>
-            {Object.keys(sources).map(key => {
+      <StyledRow>
+        <div>
+          {sources && Object.keys(sources).map(key => {
+            return (
+              <div>
+                <StyledLabel htmlFor={key} className={showLayers[key] ? "active" : ""}>{key}</StyledLabel>
+                <StyledInput
+                  type="checkbox"
+                  checked={showLayers[key]}
+                  onChange={onCheckBoxChange}
+                  key={key}
+                  id={key}
+                  value={key}
+                />
+              </div>
+            )
+          })}
+        </div>
+        {sources &&
+          <Map center={center} zoom={zoom} >
+            <Layers>
+              {Object.keys(sources).map(key => {
 
-              return (
-                <>
-                  {showLayers[key] &&
-                    <VectorLayer
-                      source={sources[key]}
-                      style={styles}
-                      key={key}
-                    />
-                  }
-                </>
-              )
-            })}
-          </Layers>
-          <Controls>
-            <FullScreenControl />
-            <ZoomControl />
-          </Controls>
-        </Map>
-      }
+                return (
+                  <>
+                    {showLayers[key] &&
+                      <VectorLayer
+                        source={sources[key]}
+                        style={styles}
+                        key={key}
+                      />
+                    }
+                  </>
+                )
+              })}
+            </Layers>
+            <Controls>
+              <FullScreenControl />
+              <ZoomControl />
+            </Controls>
+          </Map>
+        }
 
-      {sources && Object.keys(sources).map(key => {
-        return (
-          <div>
-            <label htmlFor={key} >{key}</label>
-            <input
-              type="checkbox"
-              checked={showLayers[key]}
-              onChange={onCheckBoxChange}
-              key={key}
-              id={key}
-              value={key}
-            />
-          </div>
-        )
-      })}
+      </StyledRow>
 
-    </div>
+
+    </StyledWrapper>
   )
 }
 

@@ -4,7 +4,6 @@ import Map from "ol/Map";
 import View from 'ol/View';
 import { Map as IMap } from "ol"
 import { StyledOlMaps } from './StyledMap.css';
-//TODO: FIX type
 
 interface IProps {
     zoom: number,
@@ -47,7 +46,7 @@ const MapComponent = ({ children, zoom, center }: IProps) => {
 
     return (
         <>
-            <StyledOlMaps >
+            <StyledOlMaps className="OlMaps">
                 <MapContext.Provider value={{ map }}>
                     <div ref={mapRef} className="ol-map">
                         {children}

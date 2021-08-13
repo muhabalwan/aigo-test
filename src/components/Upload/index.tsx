@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { IGeoJsonMap } from '../../helpers/types';
 import { postJsonFile, IGeoJsonData } from '../../api'
+import { StyledButton, StyledInput, StyledLabel } from './StyledUpload.css';
 
 
 
-interface IProps { 
+interface IProps {
     getUploadedFileData: (data: IGeoJsonMap) => void;
 }
 
-const UploadFile = ({ getUploadedFileData  }: IProps) => {
+const UploadFile = ({ getUploadedFileData }: IProps) => {
     const [uplodadedFile, setUplodadeFile] = useState<string>();
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,11 +38,13 @@ const UploadFile = ({ getUploadedFileData  }: IProps) => {
 
     return (
         <div>
-            <label htmlFor="fileUpload">Choose a JSON file:</label>
-            <input type="file"
-                id="fileUpload" name="fileUploader"
-                accept="application/JSON" onChange={onFileChange}></input>
-            <button type="submit" name="submit" value="submit" onClick={onSubmit}> Submit </button>
+            <StyledLabel htmlFor="fileUpload">Click to upload file:
+                <StyledInput type="file"
+                    id="fileUpload" name="fileUploader"
+                    accept="application/JSON" onChange={onFileChange}>
+                </StyledInput>
+            </StyledLabel>
+            <StyledButton type="submit" name="submit" value="submit" onClick={onSubmit}> Submit </StyledButton>
         </div>
     )
 
