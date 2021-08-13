@@ -5,7 +5,14 @@ import View from 'ol/View';
 import { Map as IMap } from "ol"
 import { StyledOlMaps } from './StyledMap.css';
 //TODO: FIX type
-const MapComponent = ({ children, zoom, center }: any) => {
+
+interface IProps {
+    zoom: number,
+    center: Array<number>,
+    children: React.ReactNode
+}
+
+const MapComponent = ({ children, zoom, center }: IProps) => {
     const mapRef = useRef<HTMLHeadingElement>(null);
     const [map, setMap] = useState<IMap>();
     

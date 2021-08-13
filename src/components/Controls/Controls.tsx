@@ -1,6 +1,8 @@
 import React from "react";
-//TODO: fix type
-const Controls = ({ children }: any) => {
+interface IProps {
+  children: React.ReactNode
+}
+const Controls = ({ children }: IProps) => {
   return <div>{children}</div>;
 };
 export default Controls;

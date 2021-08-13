@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import FullScreen from "ol/control/FullScreen";
 import MapContext from "../Map/MapContext";
+
 const FullScreenControl = () => {
   const { map } = useContext(MapContext);
   useEffect(() => {
