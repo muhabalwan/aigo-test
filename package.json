@@ -5,7 +5,6 @@
   "main": "./src/index.tsx",
   "scripts": {
     "dev": "tsc --noEmit  --watch & parcel index.html",
-    "start-server": "node server.ts",
     "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,8 +21,6 @@
   "dependencies": {
     "@types/ol": "^6.5.3",
     "axios": "^0.21.1",
-    "express": "^4.17.1",
-    "http-proxy-middleware": "^2.0.1",
     "ol": "^6.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
