@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-import View from 'ol/View';
 import Map from 'ol/Map';
   
   export interface IMapContext {

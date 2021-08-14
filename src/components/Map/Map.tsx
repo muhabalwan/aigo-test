@@ -14,7 +14,7 @@ interface IProps {
 const MapComponent = ({ children, zoom, center }: IProps) => {
     const mapRef = useRef<HTMLHeadingElement>(null);
     const [map, setMap] = useState<IMap>();
-    
+
     // on component mount
     useEffect(() => {
         let options = {
@@ -37,7 +37,7 @@ const MapComponent = ({ children, zoom, center }: IProps) => {
         if (!map) return;
         map.getView().setZoom(zoom);
     }, [zoom]);
-    
+
     // center change handler
     useEffect(() => {
         if (!map) return;
@@ -45,16 +45,14 @@ const MapComponent = ({ children, zoom, center }: IProps) => {
     }, [center])
 
     return (
-        <>
-            <StyledOlMaps className="OlMaps">
-                <MapContext.Provider value={{ map }}>
-                    <div ref={mapRef} className="ol-map">
-                        {children}
-                    </div>
-                </MapContext.Provider>
-            </StyledOlMaps>
+        <StyledOlMaps className="OlMaps">
+            <MapContext.Provider value={{ map }}>
+                <div ref={mapRef} className="ol-map">
+                    {children}
+                </div>
+            </MapContext.Provider>
+        </StyledOlMaps>
 
-        </>
     )
 }
 export default MapComponent;
