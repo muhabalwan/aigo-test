@@ -12,9 +12,9 @@ import VectorSource from 'ol/source/Vector';
 import UploadFile from './components/Upload';
 import Geometry from 'ol/geom/Geometry';
 import { IGeoJsonMap } from './helpers/types';
-import { StyledRow, StyledWrapper, StyledInput, StyledLabel } from './StyledApp.css';
+import { StyledRow, StyledWrapper, StyledInput, StyledLabel, StyledLeftColumn } from './StyledApp.css';
 
-const styles = [
+const styles: Array<Style> = [
   new Style({
     stroke: new Stroke({
       color: "blue",
@@ -46,14 +46,16 @@ const App = () => {
   interface IShowLayers {
     [category: string]: boolean
   }
-  const [center, setCenter] = useState([97558, 229873]);
-  const [zoom, setZoom] = useState(12);
+
   const [sources, setSources] = useState<ISources>();
   const [showLayers, setShowLayers] = useState<IShowLayers>({});
 
 
+ type TSource = {
+    [category: string] : VectorSource<Geometry>
+  }
   const getUploadedFileData = (formattedData: IGeoJsonMap) => {
-    const sources: any = {};
+    const sources: TSource = {};
     Object.keys(formattedData).forEach((key => {
       const layers: IShowLayers = {};
       layers[key] = true
@@ -77,7 +79,7 @@ const App = () => {
     <StyledWrapper>
       <UploadFile getUploadedFileData={getUploadedFileData} />
       <StyledRow>
-        <div>
+        <StyledLeftColumn>
           {sources && Object.keys(sources).map(key => {
             return (
               <div>
@@ -93,9 +95,9 @@ const App = () => {
               </div>
             )
           })}
-        </div>
+        </StyledLeftColumn>
         {sources &&
-          <Map center={center} zoom={zoom} >
+          <Map center={[97558, 229873]} zoom={12} >
             <Layers>
               {Object.keys(sources).map(key => {
 
@@ -120,8 +122,6 @@ const App = () => {
         }
 
       </StyledRow>
-
-
     </StyledWrapper>
   )
 }

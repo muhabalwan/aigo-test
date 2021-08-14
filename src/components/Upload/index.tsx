@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { IGeoJsonMap } from '../../helpers/types';
-import { postJsonFile, IGeoJsonData } from '../../api'
-import { StyledButton, StyledInput, StyledLabel } from './StyledUpload.css';
-
+import { postJsonFile } from '../../api'
+import { StyledButton, StyledInput, StyledLabel, StyledWrapper } from './StyledUpload.css';
 
 
 interface IProps {
@@ -37,7 +36,7 @@ const UploadFile = ({ getUploadedFileData }: IProps) => {
     }
 
     return (
-        <div>
+        <StyledWrapper>
             <StyledLabel htmlFor="fileUpload">Click to upload file:
                 <StyledInput type="file"
                     id="fileUpload" name="fileUploader"
@@ -45,7 +44,7 @@ const UploadFile = ({ getUploadedFileData }: IProps) => {
                 </StyledInput>
             </StyledLabel>
             <StyledButton type="submit" name="submit" value="submit" onClick={onSubmit}> Submit </StyledButton>
-        </div>
+        </StyledWrapper>
     )
 
 }

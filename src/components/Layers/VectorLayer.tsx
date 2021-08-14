@@ -6,13 +6,10 @@ import {  Style } from 'ol/style';
 
 import VectorSource from "ol/source/Vector";
 import Geometry from "ol/geom/Geometry";
-import MultiPoint from "ol/geom/MultiPoint";
-import RenderFeature from "ol/render/Feature";
 
-//TODO: fix style type def  
 interface IProps {
   source: VectorSource<Geometry>
-  style: any,
+  style: Array<Style>,
   zIndex?: number
 }
 

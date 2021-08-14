@@ -46,3 +46,12 @@ export const StyledLabel = styled.label`
     padding: 0px 4px;
     text-decoration: none;
 `;
+
+export const StyledWrapper = styled.div`
+    background-color: rgb(255,255,255);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 24px;
+    width: 100%;
+    margin-bottom: 10px
+    `
